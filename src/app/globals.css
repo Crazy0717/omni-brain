@@ -2,31 +2,34 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
   }
-}
+} */
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.sidebar-item {
+  min-height: 46px;
+  padding: 10px;
+  /* padding-right: 40px; */
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: 50px;
+  color: #282828;
+  cursor: pointer;
+  transition: 0.1s;
 }
-
+.sidebar-item:hover {
+  background-color: #e2e6eb;
+}
+/* p-2.5 pr-[40px] flex items-start gap-2.5  text-[#282828] cursor-pointer rounded-[50px] hover:bg-[#e2e6eb] transition duration-1 */
 @layer utilities {
+  .flex-center {
+    @apply flex items-center justify-center;
+  }
   .text-balance {
     text-wrap: balance;
   }
