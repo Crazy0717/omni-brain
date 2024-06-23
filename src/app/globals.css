@@ -26,7 +26,19 @@
   background-color: #e2e6eb;
 }
 /* p-2.5 pr-[40px] flex items-start gap-2.5  text-[#282828] cursor-pointer rounded-[50px] hover:bg-[#e2e6eb] transition duration-1 */
+.greeting_span {
+  background: -webkit-linear-gradient(16deg, #4b90ff, #ff5546);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 @layer utilities {
+  .text-res {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+    word-wrap: break-word;
+  }
   .flex-center {
     @apply flex items-center justify-center;
   }

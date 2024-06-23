@@ -8,7 +8,7 @@ const Sidebar = () => {
   const [expanded, setExpanded] = useState(false)
 
   return (
-    <div className="py-[25px] px-[15px] min-h-screen flex flex-col bg-light-1">
+    <aside className="py-[25px] px-[15px] max-w-[230px] min-h-screen flex flex-col bg-light-1">
       <div onClick={() => setExpanded(!expanded)} className="ml-[15px]">
         <Image
           className="block cursor-pointer w-[20px]"
@@ -17,7 +17,7 @@ const Sidebar = () => {
         />
       </div>
       <div className="mt-2.5 flex items-center gap-2.5 py-[10px] px-[15px] bg-[#e6eaf1] rounded-[50px] text-[14px] text-[gray]">
-        <Image className="w-[20px]" src={assets.plus_icon} alt="newchat icon" />
+        <Image className="w-[18px]" src={assets.plus_icon} alt="newchat icon" />
         <p className={cn("", { hidden: expanded })}>New Chat</p>
       </div>
       <div className={cn("flex flex-col", { hidden: expanded })}>
@@ -28,11 +28,11 @@ const Sidebar = () => {
             src={assets.message_icon}
             alt="hamburger icon"
           />
-          <p>Whay is rRea</p>
+          <p className="text-res">Whay is rRearRearRearRearRearRearRea</p>
         </div>
       </div>
       <div className="mt-auto">
-        <div className="sidebar-item">
+        <div className={cn("sidebar-item", { "justify-center": expanded })}>
           <Image
             className="w-[20px]"
             src={assets.question_icon}
@@ -40,7 +40,7 @@ const Sidebar = () => {
           />
           <p className={expanded ? "hidden" : ""}>Help</p>
         </div>
-        <div className="sidebar-item">
+        <div className={cn("sidebar-item", { "justify-center": expanded })}>
           <Image
             className="w-[20px]"
             src={assets.history_icon}
@@ -48,7 +48,7 @@ const Sidebar = () => {
           />
           <p className={expanded ? "hidden" : ""}>Activity</p>
         </div>
-        <div className="sidebar-item">
+        <div className={cn("sidebar-item", { "justify-center": expanded })}>
           <Image
             className="w-[20px]"
             src={assets.setting_icon}
@@ -57,7 +57,7 @@ const Sidebar = () => {
           <p className={expanded ? "hidden" : "border"}>Setting</p>
         </div>
       </div>
-    </div>
+    </aside>
   )
 }
 
