@@ -1,9 +1,18 @@
+"use client"
 import { assets } from "@/assets/assets"
 import Image from "next/image"
 import React from "react"
 import Card from "./ui/Card"
+import fetchPrompt from "@/service/api"
+import { useAppSelector } from "@/lib/hooks/redux"
 
 const Main = () => {
+  const a = useAppSelector((state) => state.apiData)
+  // const s = useAppSelector(state => state)
+  // const onSent = async () => {
+  //   await fetchPrompt("what is frontend")
+  // }
+  // onSent()
   return (
     <main className="pb-[15vh] w-full min-h-screen relative">
       <nav className="p-[20px] flex items-center justify-between text-[22px] text-[#585858] ">
