@@ -31,6 +31,26 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.resultLoader hr {
+  height: 20px;
+  border-radius: 4px;
+  border: none;
+  background-color: #f6f7f8;
+  background: linear-gradient(to right, #9ed7ff, #fff, #9ed7ff);
+  background-size: 800px 50px;
+  animation: resultLoader 3s infinite linear;
+}
+@keyframes resultLoader {
+  0% {
+    background-position: -800px 0px;
+  }
+  100% {
+    background-position: 800px 0px;
+  }
+}
 @layer utilities {
   .text-res {
     display: -webkit-box;

@@ -28,7 +28,7 @@ async function fetchPrompt(prompt: string) {
   })
 
   const result = await chatSession.sendMessage(prompt)
-  console.log(result.response.text())
-}
+  return result.response
+} 
 
 export default fetchPrompt

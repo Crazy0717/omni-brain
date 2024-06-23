@@ -54,7 +54,7 @@ const Sidebar = () => {
             src={assets.setting_icon}
             alt="setting icon"
           />
-          <p className={expanded ? "hidden" : "border"}>Setting</p>
+          <p className={expanded ? "hidden" : ""}>Setting</p>
         </div>
       </div>
     </aside>

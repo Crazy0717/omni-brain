@@ -2,6 +2,7 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit"
 
 interface initialTypes {
   prompt: string
+  isLoading: boolean
   [key: string]: any
 }
 
@@ -12,6 +13,7 @@ interface SetValuePayload {
 
 const initialState: initialTypes = {
   prompt: "",
+  isLoading: false,
 }
 
 const apiData = createSlice({
@@ -22,8 +24,11 @@ const apiData = createSlice({
       const { ident, value } = action.payload
       state[ident] = value
     },
+    handleLoading: (state, action) => {
+      state.isLoading = action.payload === true
+    },
   },
 })
 
-export const { setValue } = apiData.actions
+export const { setValue, handleLoading } = apiData.actions
 export default apiData.reducer
