@@ -34,22 +34,22 @@ const Main = () => {
   console.log(resultsData)
   return (
     <main className="pb-[15vh] w-full min-h-screen relative">
-      <nav className="p-[20px] flex items-center justify-between text-[22px] text-[#585858] ">
+      <nav className="p-[20px] flex items-center justify-between text-[22px] text-[#585858]">
         <p>OmniBrain</p>
         {/* <Image src={assets.user_icon} alt="user icon" /> */}
       </nav>
-      <div className="max-w-[900px] my-0 mx-auto">
+      <div className="max-w-[900px] my-0 mx-auto max-phone:px-5">
         {!showResults ? (
           <>
             <div className="">
-              <p className="mt-[50px] text-[40px] text-[#c4c7c5] font-[500]">
+              <p className="mt-[50px] text-[40px] text-[#c4c7c5] font-[500] max-phone:text-[30px] max-phone:leading-9 max-phone:mt-[10px]">
                 <span className="greeting_span">Hello, Dev</span>
               </p>
-              <p className="mb-[50px] text-[40px] text-[#c4c7c5] font-[500]">
+              <p className="mb-[50px] text-[40px] text-[#c4c7c5] font-[500] max-phone:text-[30px] max-phone:leading-9 max-phone:mb-[30px]">
                 How can I help you today
               </p>
             </div>
-            <div className="flex justify-between">
+            <div className="flex justify-between gap-y-2 max-sm:flex-wrap max-phone:flex-wrap">
               <Card
                 text="Suggest beautiful places to see on an upcoming road trip"
                 iconUrl={assets.compass_icon}

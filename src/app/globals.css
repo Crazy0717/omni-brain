@@ -9,7 +9,9 @@
     --background-end-rgb: 0, 0, 0;
   }
 } */
-
+.app {
+  overflow-x: hidden;
+}
 .sidebar-item {
   min-height: 46px;
   padding: 10px;

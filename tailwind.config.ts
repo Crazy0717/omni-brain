@@ -8,6 +8,12 @@ const config: Config = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    screens: {
+      phone: "480px",
+      tablet: "720px",
+      laptop: "1024px",
+      desktop: "1280px",
+    },
     extend: {
       transitionDuration: {
         1: "0.1s",
