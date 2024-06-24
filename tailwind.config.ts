@@ -23,6 +23,18 @@ const config: Config = {
           1: "#f0f4f9",
         },
       },
+      animation: {
+        fadeIn1: "fadeIn 0.2s linear",
+        fadeIn2: "fadeIn 0.4s linear",
+        fadeIn3: "fadeIn 0.6s linear",
+        fadeIn5: "fadeIn 0.8s linear",
+      },
+      keyframes: {
+        fadeIn: {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":

@@ -1,26 +1,43 @@
 "use client"
 import { assets } from "@/assets/assets"
 import Image from "next/image"
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import Card from "./ui/Card"
 import fetchPrompt from "@/service/api"
 import { useAppDispatch, useAppSelector } from "@/lib/hooks/redux"
-import { handleLoading, setValue } from "@/lib/slices/apiData"
+import { handleLoading, setPrevPrompts, setValue } from "@/lib/slices/apiData"
 
 const Main = () => {
-  const { prompt, isLoading } = useAppSelector((state) => state.apiData)
+  const { prompt, isLoading, oldPrompt, showResults } = useAppSelector(
+    (state) => state.apiData
+  )
+  console.log(oldPrompt)
   const dispatch = useAppDispatch()
-  const [showResults, setShowResults] = useState(false)
   const [resultsData, setResultsData] = useState("")
   const [recentPrompt, setRecentPrompt] = useState("")
 
+  const typingEffect = (i: number, nextWord: string) => {
+    setTimeout(function () {
+      setResultsData((prev) => prev + nextWord)
+    }, 70 * i)
+  }
+
   const onSent = async (promptWord: string) => {
     dispatch(handleLoading(true))
+    dispatch(setValue({ ident: "showResults", value: true }))
+    setResultsData("")
+
     const response = await fetchPrompt(promptWord)
-    setRecentPrompt(prompt)
+    setRecentPrompt(promptWord)
     dispatch(handleLoading(false))
-    setShowResults(true)
-    setResultsData(response.text())
+
+    let response2 = response.text().split(" ")
+    for (let i = 0; i < response2.length; i++) {
+      const nextWord = response2[i]
+      typingEffect(i, nextWord + " ")
+    }
+    dispatch(setPrevPrompts(promptWord))
+    dispatch(setValue({ ident: "prompt", value: "" }))
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -31,38 +48,46 @@ const Main = () => {
     e.preventDefault()
     onSent(prompt)
   }
-  console.log(resultsData)
+
+  useEffect(() => {
+    if (!(oldPrompt === "")) onSent(oldPrompt)
+  }, [oldPrompt])
+
   return (
     <main className="pb-[15vh] w-full min-h-screen relative">
       <nav className="p-[20px] flex items-center justify-between text-[22px] text-[#585858]">
         <p>OmniBrain</p>
         {/* <Image src={assets.user_icon} alt="user icon" /> */}
       </nav>
-      <div className="max-w-[900px] my-0 mx-auto max-phone:px-5">
+      <div className="max-w-[900px] my-0 mx-auto max-phone:px-5 max-tablet:px-5 max-desktop:px-5">
         {!showResults ? (
           <>
             <div className="">
-              <p className="mt-[50px] text-[40px] text-[#c4c7c5] font-[500] max-phone:text-[30px] max-phone:leading-9 max-phone:mt-[10px]">
+              <p className="animate-fadeIn2 mt-[50px] text-[40px] text-[#c4c7c5] font-[500] max-phone:text-[30px] max-phone:leading-9 max-tablet:text-[30px] max-tablet:leading-9 max-phone:mt-[10px] max-tablet:mt-[10px]">
                 <span className="greeting_span">Hello, Dev</span>
               </p>
-              <p className="mb-[50px] text-[40px] text-[#c4c7c5] font-[500] max-phone:text-[30px] max-phone:leading-9 max-phone:mb-[30px]">
+              <p className="mb-[50px] text-[40px] text-[#c4c7c5] font-[500] max-phone:text-[30px] max-phone:leading-9 max-tablet:text-[30px] max-tablet:leading-9 max-phone:mb-[30px] max-tablet:mb-[30px]">
                 How can I help you today
               </p>
             </div>
-            <div className="flex justify-between gap-y-2 max-sm:flex-wrap max-phone:flex-wrap">
+            <div className="animate-fadeIn3 flex justify-between gap-y-2 max-sm:flex-wrap max-phone:flex-wrap max-tablet:flex-wrap">
               <Card
+                handleClick={onSent}
                 text="Suggest beautiful places to see on an upcoming road trip"
                 iconUrl={assets.compass_icon}
               />
               <Card
+                handleClick={onSent}
                 text="Briefly sumarize this concept: uraban planning"
                 iconUrl={assets.bulb_icon}
               />
               <Card
+                handleClick={onSent}
                 text="Brainstorm team bonding activities for our work retreat"
                 iconUrl={assets.message_icon}
               />
               <Card
+                handleClick={onSent}
                 text="Improve the readability of the following code"
                 iconUrl={assets.code_icon}
               />
@@ -73,8 +98,12 @@ const Main = () => {
             <div className="my-[40px]">
               <p>{recentPrompt}</p>
             </div>
-            <div className="">
-              <Image src={assets.gemini_icon} alt="omnibrain icon" />
+            <div className="flex items-start">
+              <Image
+                className="logo"
+                src={assets.omnibrain_logo}
+                alt="omnibrain icon"
+              />
               {isLoading ? (
                 <div className="resultLoader w-full flex flex-col gap-2.5">
                   <hr />
@@ -91,7 +120,7 @@ const Main = () => {
           </div>
         )}
 
-        <div className="w-full max-w-[900px] px-[20px] absolute bottom-5">
+        <div className="animate-fadeIn5 w-full max-w-[900px] px-[20px] absolute bottom-5">
           <form
             onSubmit={handleSubmit}
             className="px-[20px] flex items-center justify-between bg-light-1 rounded-[50px]"
@@ -101,6 +130,7 @@ const Main = () => {
               className="flex-1  bg-transparent outline-none text-[18px]"
               type="text"
               placeholder="Type a prompt here..."
+              value={prompt}
             />
             <button type="submit" className="py-[10px] cursor-pointer">
               <Image

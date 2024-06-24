@@ -45,6 +45,11 @@
   background-size: 800px 50px;
   animation: resultLoader 3s infinite linear;
 }
+.logo {
+  margin: 5px 5px 0 0;
+  width: 20px;
+  filter: grayscale(1);
+}
 @keyframes resultLoader {
   0% {
     background-position: -800px 0px;
