@@ -6,6 +6,7 @@ import Card from "./ui/Card"
 import fetchPrompt from "@/service/api"
 import { useAppDispatch, useAppSelector } from "@/lib/hooks/redux"
 import { handleLoading, setPrevPrompts, setValue } from "@/lib/slices/apiData"
+import MarkdownRenderer from "./MarkdownRenderer"
 
 const Main = () => {
   const { prompt, isLoading, oldPrompt, showResults } = useAppSelector(
@@ -52,7 +53,7 @@ const Main = () => {
   useEffect(() => {
     if (!(oldPrompt === "")) onSent(oldPrompt)
   }, [oldPrompt])
-
+  console.log(resultsData)
   return (
     <main className="pb-[15vh] w-full min-h-screen relative">
       <nav className="p-[20px] flex items-center justify-between text-[22px] text-[#585858]">
@@ -111,10 +112,7 @@ const Main = () => {
                   <hr />
                 </div>
               ) : (
-                <p
-                  className="text-[17px] font-[300] leading-[1.8]"
-                  dangerouslySetInnerHTML={{ __html: resultsData }}
-                ></p>
+                <MarkdownRenderer>{resultsData}</MarkdownRenderer>
               )}
             </div>
           </div>
