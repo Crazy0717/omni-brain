@@ -12,7 +12,6 @@ const Main = () => {
   const { prompt, isLoading, oldPrompt, showResults } = useAppSelector(
     (state) => state.apiData
   )
-  console.log(oldPrompt)
   const dispatch = useAppDispatch()
   const [resultsData, setResultsData] = useState("")
   const [recentPrompt, setRecentPrompt] = useState("")
@@ -53,7 +52,7 @@ const Main = () => {
   useEffect(() => {
     if (!(oldPrompt === "")) onSent(oldPrompt)
   }, [oldPrompt])
-  console.log(resultsData)
+
   return (
     <main className="pb-[15vh] w-full min-h-screen relative">
       <nav className="p-[20px] flex items-center justify-between text-[22px] text-[#585858]">

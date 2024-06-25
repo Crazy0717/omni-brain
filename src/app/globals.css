@@ -50,6 +50,9 @@
   width: 20px;
   filter: grayscale(1);
 }
+pre div {
+  border-radius: 8px !important;
+}
 @keyframes resultLoader {
   0% {
     background-position: -800px 0px;
