@@ -96,20 +96,20 @@ const Main = () => {
           </>
         ) : (
           <div className="px-[5%] max-h-[70vh] scrollbar-none overflow-y-scroll">
-            <div className="my-[40px]">
-              <p className="dark:text-dark-text">{recentPrompt}</p>
+            <div className="px-5 py-2 my-[40px] bg-light-1 rounded-[20px] dark:bg-dark-3 dark:text-dark-text">
+              <p className="dark:text-dark-text">{recentPrompt}sdcasdasdc</p>
             </div>
             <div className="flex items-start gap-2">
               <Image
-                className="logo filter-revert"
+                className={cn("logo", { "filter-revert": isDarkMode })}
                 src={assets.omnibrain_logo}
                 alt="omnibrain icon"
               />
               {isLoading ? (
                 <div className="resultLoader w-full flex flex-col gap-2.5">
-                  <hr />
-                  <hr />
-                  <hr />
+                  <hr id={isDarkMode ? "darkLoader" : ""} />
+                  <hr id={isDarkMode ? "darkLoader" : ""} />
+                  <hr id={isDarkMode ? "darkLoader" : ""} />
                 </div>
               ) : (
                 <MarkdownRenderer>{resultsData}</MarkdownRenderer>

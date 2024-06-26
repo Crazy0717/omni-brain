@@ -39,6 +39,10 @@
   background-size: 800px 50px;
   animation: resultLoader 3s infinite linear;
 }
+#darkLoader {
+  background-color: transparent;
+  background: linear-gradient(to right, #2c3539, #2c2f33, #2c3539);
+}
 .logo {
   margin: 5px 5px 0 0;
   width: 20px;

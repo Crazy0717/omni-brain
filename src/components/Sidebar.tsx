@@ -65,10 +65,12 @@ const Sidebar = () => {
             <div
               key={index}
               onClick={() => loadOldResults(item)}
-              className="sidebar-item"
+              className={cn("sidebar-item", { "hover:bg-dark-3": isDarkMode })}
             >
               <Image
-                className="w-[20px] max-phone:w-[16px]"
+                className={cn("w-[20px] max-phone:w-[16px]", {
+                  "filter-revert": isDarkMode,
+                })}
                 src={assets.message_icon}
                 alt="hamburger icon"
               />
