@@ -5,13 +5,14 @@ import React, { useEffect, useState } from "react"
 import Card from "./ui/Card"
 import fetchPrompt from "@/service/api"
 import { useAppDispatch, useAppSelector } from "@/lib/hooks/redux"
-import { handleLoading, setPrevPrompts, setValue } from "@/lib/slices/apiData"
+import { handleLoading, setPrevPrompts, setValue } from "@/lib/slices/states"
 import MarkdownRenderer from "./MarkdownRenderer"
+import ToggleBtn from "./ui/ToggleBtn"
+import { cn } from "@/lib/utils"
 
 const Main = () => {
-  const { prompt, isLoading, oldPrompt, showResults } = useAppSelector(
-    (state) => state.apiData
-  )
+  const { prompt, isLoading, oldPrompt, showResults, isDarkMode } =
+    useAppSelector((state) => state.states)
   const dispatch = useAppDispatch()
   const [resultsData, setResultsData] = useState("")
   const [recentPrompt, setRecentPrompt] = useState("")
@@ -54,10 +55,10 @@ const Main = () => {
   }, [oldPrompt])
 
   return (
-    <main className="pb-[15vh] w-full min-h-screen relative">
+    <main className="pb-[15vh] w-full min-h-screen relative dark:bg-dark-1">
       <nav className="p-[20px] flex items-center justify-between text-[22px] text-[#585858]">
-        <p>OmniBrain</p>
-        {/* <Image src={assets.user_icon} alt="user icon" /> */}
+        <p className="dark:text-dark-text">OmniBrain</p>
+        <ToggleBtn />
       </nav>
       <div className="max-w-[900px] my-0 mx-auto max-phone:px-5 max-tablet:px-5 max-desktop:px-5">
         {!showResults ? (
@@ -96,11 +97,11 @@ const Main = () => {
         ) : (
           <div className="px-[5%] max-h-[70vh] scrollbar-none overflow-y-scroll">
             <div className="my-[40px]">
-              <p>{recentPrompt}</p>
+              <p className="dark:text-dark-text">{recentPrompt}</p>
             </div>
-            <div className="flex items-start">
+            <div className="flex items-start gap-2">
               <Image
-                className="logo"
+                className="logo filter-revert"
                 src={assets.omnibrain_logo}
                 alt="omnibrain icon"
               />
@@ -120,18 +121,18 @@ const Main = () => {
         <div className="animate-fadeIn5 w-full max-w-[900px] px-[20px] absolute bottom-5">
           <form
             onSubmit={handleSubmit}
-            className="px-[20px] flex items-center justify-between bg-light-1 rounded-[50px]"
+            className="px-[20px] flex items-center justify-between bg-light-1 rounded-[50px] dark:bg-dark-3 dark:caret-dark-text"
           >
             <input
               onChange={handleChange}
-              className="flex-1  bg-transparent outline-none text-[18px]"
+              className="flex-1 bg-transparent outline-none text-[18px] dark:text-dark-text"
               type="text"
               placeholder="Type a prompt here..."
               value={prompt}
             />
             <button type="submit" className="py-[10px] cursor-pointer">
               <Image
-                className="w-[24px]"
+                className={cn("w-[24px]", { "filter-revert": isDarkMode })}
                 src={assets.send_icon}
                 alt="send icon"
               />

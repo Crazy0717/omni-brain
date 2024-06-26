@@ -6,6 +6,7 @@ interface initialTypes {
   prevPrompts: string[]
   oldPrompt: string
   showResults: boolean
+  isDarkMode: boolean
   [key: string]: any
 }
 
@@ -20,10 +21,11 @@ const initialState: initialTypes = {
   isLoading: false,
   prevPrompts: [],
   oldPrompt: "",
+  isDarkMode: false,
 }
 
-const apiData = createSlice({
-  name: "apiData",
+const states = createSlice({
+  name: "states",
   initialState,
   reducers: {
     setValue: (state, action: PayloadAction<SetValuePayload>) => {
@@ -39,5 +41,5 @@ const apiData = createSlice({
   },
 })
 
-export const { setValue, handleLoading, setPrevPrompts } = apiData.actions
-export default apiData.reducer
+export const { setValue, handleLoading, setPrevPrompts } = states.actions
+export default states.reducer

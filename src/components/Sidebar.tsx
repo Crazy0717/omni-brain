@@ -4,10 +4,10 @@ import { assets } from "../assets/assets"
 import { useState } from "react"
 import { cn } from "@/lib/utils"
 import { useAppDispatch, useAppSelector } from "@/lib/hooks/redux"
-import { setValue } from "@/lib/slices/apiData"
+import { setValue } from "@/lib/slices/states"
 
 const Sidebar = () => {
-  const { prevPrompts } = useAppSelector((state) => state.apiData)
+  const { prevPrompts, isDarkMode } = useAppSelector((state) => state.states)
   const dispatch = useAppDispatch()
   const [expanded, setExpanded] = useState(false)
 
@@ -23,23 +23,25 @@ const Sidebar = () => {
   return (
     <aside
       className={cn(
-        "w-full py-[25px] px-[15px] max-w-[230px] min-h-screen flex flex-col bg-light-1 max-phone:max-w-[180px]",
+        "w-full py-[25px] px-[15px] max-w-[230px] min-h-screen flex flex-col bg-light-1 max-phone:max-w-[180px] dark:bg-dark-2",
         { "w-auto": expanded }
       )}
     >
       <div
         onClick={() => setExpanded(!expanded)}
-        className={cn("ml-[15px]", { "max-phone:ml-[10px]": expanded })}
+        className={cn("ml-[14px]", { "max-phone:ml-[10px]": expanded })}
       >
         <Image
-          className="block cursor-pointer w-[20px]"
+          className={cn("block cursor-pointer w-[20px]", {
+            "filter-revert": isDarkMode,
+          })}
           src={assets.menu_icon}
           alt="hamburger icon"
         />
       </div>
       <div
         onClick={newChat}
-        className="mt-2.5 flex items-center gap-2.5 py-[10px] px-[15px] bg-[#e6eaf1] rounded-[50px] text-[14px] text-[gray] cursor-pointer"
+        className="mt-2.5 flex items-center gap-2.5 py-[10px] px-[15px] bg-[#e6eaf1] rounded-[50px] text-[14px] text-[gray] cursor-pointer transition duration-1 dark:bg-dark-3 dark:text-dark-text dark:hover:brightness-125"
       >
         <Image
           className={cn("w-[18px] max-phone:w-[16px]", {
@@ -55,7 +57,7 @@ const Sidebar = () => {
       <div
         className={cn("animate-fadeIn2 flex flex-col", { hidden: expanded })}
       >
-        <p className="mt-[30px] mb-[20px] max-phone:text-[14px] max-phone:mb-2">
+        <p className="mt-[30px] mb-[20px] max-phone:text-[14px] max-phone:mb-2 dark:text-dark-text">
           Recent
         </p>
         {prevPrompts &&
@@ -70,7 +72,9 @@ const Sidebar = () => {
                 src={assets.message_icon}
                 alt="hamburger icon"
               />
-              <p className="text-res max-phone:text-[14px]">{item}</p>
+              <p className="text-res max-phone:text-[14px] dark:text-dark-text">
+                {item}
+              </p>
             </div>
           ))}
       </div>

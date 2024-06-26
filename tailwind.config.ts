@@ -22,6 +22,12 @@ const config: Config = {
         light: {
           1: "#f0f4f9",
         },
+        dark: {
+          1: "#2C2F33",
+          2: "#2C3539",
+          3: "#474B4E",
+          text: "#E8E9ED",
+        },
       },
       animation: {
         fadeIn1: "fadeIn 0.2s linear",

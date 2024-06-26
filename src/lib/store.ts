@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import apiData from "./slices/apiData";
+import states from "./slices/states";
 
 const store = configureStore({
   reducer: {
-    apiData: apiData,
+    states: states,
   },
 });
 
