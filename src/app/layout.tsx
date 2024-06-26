@@ -2,12 +2,14 @@ import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
 import ReduxProvider from "@/provider/ReduxProvider"
-
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: "OmniBrain",
-  description: "Multi ai model web app",
+  description: "Ai chatbot",
+  icons: {
+    icon: "/omnibrain_logo.png",
+  },
 }
 
 export default function RootLayout({

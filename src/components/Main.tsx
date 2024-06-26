@@ -97,7 +97,7 @@ const Main = () => {
         ) : (
           <div className="px-[5%] max-h-[70vh] scrollbar-none overflow-y-scroll">
             <div className="px-5 py-2 my-[40px] bg-light-1 rounded-[20px] dark:bg-dark-3 dark:text-dark-text">
-              <p className="dark:text-dark-text">{recentPrompt}sdcasdasdc</p>
+              <p className="dark:text-dark-text">{recentPrompt}</p>
             </div>
             <div className="flex items-start gap-2">
               <Image
