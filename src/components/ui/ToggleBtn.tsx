@@ -37,7 +37,7 @@ const ToggleBtn = () => {
       ></div>
       <label className="switch w-[2em] h-[1em] inline-block bg-light-1 text-[20px] rounded-[1em] dark:bg-dark-2">
         <input
-          checked={isDarkMode}
+          defaultChecked={isDarkMode}
           className="absolute opacity-0"
           type="checkbox"
         />

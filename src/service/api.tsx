@@ -1,8 +1,4 @@
-import {
-  GoogleGenerativeAI,
-  HarmCategory,
-  HarmBlockThreshold,
-} from "@google/generative-ai"
+import { GoogleGenerativeAI } from "@google/generative-ai"
 
 const apiKey = process.env.NEXT_PUBLIC_GEMINI_APIKEY
 const genAI = new GoogleGenerativeAI(apiKey!)
@@ -22,13 +18,11 @@ const generationConfig = {
 async function fetchPrompt(prompt: string) {
   const chatSession = model.startChat({
     generationConfig,
-    // safetySettings: Adjust safety settings
-    // See https://ai.google.dev/gemini-api/docs/safety-settings
     history: [],
   })
 
   const result = await chatSession.sendMessage(prompt)
   return result.response
-} 
+}
 
 export default fetchPrompt
