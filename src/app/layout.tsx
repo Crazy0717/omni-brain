@@ -3,6 +3,7 @@ import { Inter } from "next/font/google"
 import "./globals.css"
 import ReduxProvider from "@/provider/ReduxProvider"
 const inter = Inter({ subsets: ["latin"] })
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 export const metadata: Metadata = {
   title: "OmniBrain",
@@ -20,6 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+        <SpeedInsights />
         <ReduxProvider>{children}</ReduxProvider>
       </body>
     </html>
