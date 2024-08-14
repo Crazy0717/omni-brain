@@ -11,6 +11,8 @@ export const metadata: Metadata = {
   icons: {
     icon: "/omnibrain_logo.png",
   },
+  manifest: "/manifest.json",
+  themeColor: "#FFFFFF",
 }
 
 export default function RootLayout({
