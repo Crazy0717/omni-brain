@@ -41,7 +41,7 @@ const Sidebar = () => {
       </div>
       <div
         onClick={newChat}
-        className="mt-2.5 flex items-center gap-2.5 py-[10px] px-[15px] bg-[#e6eaf1] rounded-[50px] text-[14px] text-[gray] cursor-pointer transition duration-1 dark:bg-dark-3 dark:text-dark-text dark:hover:brightness-125"
+        className="mt-2.5 flex items-center gap-2.5 py-[10px] px-[15px] bg-[#e6eaf1] rounded-[50px] text-[14px] text-[#4d4d4d] cursor-pointer transition duration-1 dark:bg-dark-3 dark:text-dark-text dark:hover:brightness-125"
       >
         <Image
           className={cn("w-[18px] max-phone:w-[16px]", {
